@@ -52,7 +52,7 @@ const Projects = () => {
           className="mb-16 text-center"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Recent <span className="text-accent">Work</span>
+            <span className="text-accent">Recent Work</span>
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto" />
         </motion.div>
@@ -67,7 +67,21 @@ const Projects = () => {
   );
 };
 
-const ProjectCard = ({ project, index, isInView }: any) => {
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tech: string[];
+  github: string;
+}
+
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+  isInView: boolean;
+}
+
+const ProjectCard = ({ project, index, isInView }: ProjectCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -113,7 +127,7 @@ const ProjectCard = ({ project, index, isInView }: any) => {
       </div>
 
       <div className="p-6 bg-card">
-        <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+        <h3 className="text-xl font-bold mb-3 text-accent">{project.title}</h3>
         <div className="flex flex-wrap gap-2">
           {project.tech.map((tech: string) => (
             <span

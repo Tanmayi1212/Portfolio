@@ -18,10 +18,82 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <style>
+      /* NOTE: default is now the "light" navbar (used on page load / light sections).
+         The script will add .dark when a section requests a dark-on-light inversion. */
+
+      .site-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1.25rem;
+        background: rgba(255,255,255,0.85); /* light by default */
+        backdrop-filter: blur(6px);
+        color: #0f1724; /* dark text on light bg */
+        transition: background-color .25s ease, color .25s ease, box-shadow .25s ease;
+        box-shadow: 0 2px 14px rgba(2,6,23,0.06);
+        pointer-events: auto;
+      }
+
+      /* .dark makes the navbar dark (white text on dark translucent bg) */
+      .site-nav.dark {
+        background: rgba(6,8,15,0.45);
+        color: #fff;
+        box-shadow: 0 2px 10px rgba(2,6,23,0.12);
+      }
+
+      .site-nav a, .site-nav button, .site-nav svg {
+        color: inherit;
+      }
+    </style>
   </head>
 
-  <body>
+  <body class="bg-dark-section text-white">
     <div id="root"></div>
+
+    <script>
+      // Wait for a nav element with class 'site-nav' or id 'navbar' to appear in DOM,
+      // then observe sections that provide data-nav-theme="light" | "dark".
+      // Behavior: when a section's data-nav-theme === "light" we ADD the .dark class
+      // (i.e. navbar becomes dark) — this inverts the previous mapping per request.
+      (function watchNavTheme(){
+        const findNav = () => document.querySelector('.site-nav') || document.querySelector('#navbar') || null;
+
+        const getCurrentSectionTheme = () => {
+          // prefer sections that have their center in the viewport
+          const sections = Array.from(document.querySelectorAll('section[data-nav-theme]'));
+          const centerY = window.innerHeight / 2;
+          for (const s of sections) {
+            const r = s.getBoundingClientRect();
+            if (r.top <= centerY && r.bottom >= centerY) return s.getAttribute('data-nav-theme');
+          }
+          // fallback: nearest to top
+          if (sections.length) return sections[0].getAttribute('data-nav-theme');
+          return null;
+        };
+
+        const applyThemeToNav = (navEl, theme) => {
+          // Inverted mapping: light section -> dark navbar; dark section -> light navbar
+          if (theme === 'light') navEl.classList.add('dark');
+          else navEl.classList.remove('dark');
+        };
+
+        const initObserver = (navEl) => {
+          const sections = Array.from(document.querySelectorAll('section[data-nav-theme]'));
+          if (!sections.length) {
+            // still set initial by checking DOM if none marked yet
+            const theme = getCurrentSectionTheme();
+            if
+        mo.observe(document.body, { childList: true, subtree: true });
+      })();
+    </script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

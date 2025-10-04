@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import profileImage from '@/assets/profile.jpg';
+import profileImage from '@/assets/profile.png';
 
 const Hero = () => {
   const scrollToAbout = () => {
@@ -8,7 +8,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative px-6">
+    <section data-nav-theme="dark" className="min-h-screen flex items-center justify-center relative px-6 bg-dark-section text-white">
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -21,7 +21,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-muted-foreground mb-4 text-sm tracking-widest uppercase"
+              className="text-gray-300 mb-4 text-sm tracking-widest uppercase"
             >
               CS Student & Developer
             </motion.p>
@@ -30,7 +30,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white"
             >
               Tanmayi
               <br />
@@ -41,7 +41,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="text-xl text-muted-foreground mb-8 leading-relaxed"
+              className="text-xl text-gray-300 mb-8 leading-relaxed"
             >
               Passionate about Web Development & AI/ML
             </motion.p>
@@ -52,18 +52,27 @@ const Hero = () => {
               transition={{ delay: 1 }}
               className="flex gap-4"
             >
-              <a
+              {/* Get in Touch - motion anchor with subtle float + glow on dark */}
+              <motion.a
                 href="mailto:tanmayinadipalli@gmail.com"
-                className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:scale-105 transition-transform"
+                whileHover={{ scale: 1.06, y: -4 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                className="px-8 py-3 rounded-full font-medium shadow-md transition-shadow will-change-transform animate-pulse-glow bg-white/10 hover:bg-white/20 border border-white/10 text-white"
               >
                 Get in Touch
-              </a>
-              <button
+              </motion.a>
+
+              {/* View Work - motion button with subtle outline on dark */}
+              <motion.button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-3 border-2 border-primary rounded-full font-medium hover:bg-primary hover:text-primary-foreground transition-all"
+                whileHover={{ scale: 1.05, rotate: -1, y: -3 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: 'spring', stiffness: 320 }}
+                className="px-8 py-3 border-2 border-white/20 rounded-full font-medium hover:bg-white/10 transition-all text-white"
               >
                 View Work
-              </button>
+              </motion.button>
             </motion.div>
           </motion.div>
 
@@ -78,7 +87,7 @@ const Hero = () => {
               transition={{ duration: 0.3 }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-accent/20 rounded-full blur-3xl" />
+              <div className="absolute inset-0 rounded-full blur-3xl bg-accent/30 animate-float" />
               <img
                 src={profileImage}
                 alt="Tanmayi Nadipalli"
@@ -91,12 +100,14 @@ const Hero = () => {
 
       <motion.button
         onClick={scrollToAbout}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce-slow"
+        whileHover={{ y: -6 }}
+        whileTap={{ scale: 0.95 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce-slow text-white"
       >
-        <ChevronDown className="w-8 h-8 text-muted-foreground" />
+        <ChevronDown className="w-8 h-8 text-white" />
       </motion.button>
     </section>
   );
