@@ -87,10 +87,27 @@
         const initObserver = (navEl) => {
           const sections = Array.from(document.querySelectorAll('section[data-nav-theme]'));
           if (!sections.length) {
-            // still set initial by checking DOM if none marked yet
             const theme = getCurrentSectionTheme();
-            if
-        mo.observe(document.body, { childList: true, subtree: true });
+            if (theme) applyThemeToNav(navEl, theme);
+            return;
+          }
+          
+          const onScroll = () => {
+            const theme = getCurrentSectionTheme();
+            if (theme) applyThemeToNav(navEl, theme);
+          };
+          
+          window.addEventListener('scroll', onScroll, { passive: true });
+          onScroll();
+        };
+
+        const waitForNav = setInterval(() => {
+          const navEl = findNav();
+          if (navEl) {
+            clearInterval(waitForNav);
+            initObserver(navEl);
+          }
+        }, 100);
       })();
     </script>
 
