@@ -26,13 +26,14 @@ const Navigation = () => {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="site-nav"
     >
-      <div className="container mx-auto px-6 py-4">
+      {/* reduced inner padding to match slimmer navbar */}
+      <div className="container mx-auto px-3 py-1">
         <div className="flex items-center justify-between">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-xl font-semibold"
+            className="text-base font-semibold"
           >
             TN
           </motion.div>

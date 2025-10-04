@@ -20,9 +20,7 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <style>
-      /* NOTE: default is now the "light" navbar (used on page load / light sections).
-         The script will add .dark when a section requests a dark-on-light inversion. */
-
+      /* Keep the navbar dark by default (white text on dark translucent bg). */
       .site-nav {
         position: fixed;
         top: 0;
@@ -32,16 +30,17 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-        padding: 0.75rem 1.25rem;
-        background: rgba(255,255,255,0.85); /* light by default */
+        /* slightly reduced vertical padding kept */
+        padding: 0.4rem 0.75rem;
+        background: rgba(6,8,15,0.55); /* dark by default */
         backdrop-filter: blur(6px);
-        color: #0f1724; /* dark text on light bg */
+        color: #fff; /* white text for visibility */
         transition: background-color .25s ease, color .25s ease, box-shadow .25s ease;
-        box-shadow: 0 2px 14px rgba(2,6,23,0.06);
+        box-shadow: 0 2px 14px rgba(2,6,23,0.12);
         pointer-events: auto;
       }
 
-      /* .dark makes the navbar dark (white text on dark translucent bg) */
+      /* keep the .dark rule for compatibility (no visible change) */
       .site-nav.dark {
         background: rgba(6,8,15,0.45);
         color: #fff;
@@ -112,5 +111,7 @@
     </script>
 
     <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
   </body>
 </html>
