@@ -4,88 +4,108 @@ import { useRef } from 'react';
 import { Code2, Brain, Users } from 'lucide-react';
 
 const services = [
-  {
-    icon: Code2,
-    title: 'Web Development',
-    description: 'Building modern, responsive web applications using React, Next.js, and Node.js. Focus on clean architecture, scalability, and optimal performance.',
-    skills: ['React', 'Next.js', 'Node.js', 'MongoDB', 'Express.js']
-  },
-  {
-    icon: Brain,
-    title: 'ML & Data Science',
-    description: 'Developing machine learning models and data analysis solutions. Expertise in NLP, sentiment analysis, and building intelligent applications.',
-    skills: ['Python', 'TensorFlow', 'Scikit-learn', 'BERT', 'Data Analysis']
-  },
-  {
-    icon: Users,
-    title: 'Leadership',
-    description: 'Leading technical teams and mentoring juniors in software development. Coordinating cross-functional projects and delivering scalable solutions.',
-    skills: ['Team Management', 'Mentoring', 'Project Planning', 'Communication']
-  }
+	{
+		icon: Code2,
+		title: 'Web Development',
+		description:
+			'Building modern, responsive web applications with a focus on clean architecture and performance.',
+		keyTech: ['React', 'Next.js', 'Node.js', 'MongoDB', 'Express.js'],
+	},
+	{
+		icon: Brain,
+		title: 'ML & Data Science',
+		description:
+			'Applied ML and data analysis for NLP and predictive tasks, from prototyping to model evaluation.',
+		keyTech: ['Python', 'TensorFlow', 'Scikit-learn', 'BERT', 'Data Analysis'],
+	},
+	{
+		icon: Users,
+		title: 'Leadership',
+		description:
+			'Leading small engineering teams, mentoring peers, and coordinating deliveries across stakeholders.',
+		keyTech: ['Team Management', 'Mentoring', 'Project Planning', 'Communication'],
+	},
 ];
 
+const skillsRow = ["Python", "JavaScript", "SQL", "HTML", "CSS", "Tailwind CSS", "MongoDB", "Database Management Systems", "Object-Oriented Programming", "Data Structures & Algorithms", "Operating Systems", "GitHub", "Linux", "Transformers", "Machine Learning"];
+
+
+
 const Services = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  return (
-    <section id="services" data-nav-theme="dark" className="py-24 px-6 bg-primary text-primary-foreground">
-      <div className="container mx-auto max-w-6xl" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            My Niches & Services
-          </h2>
-          <div className="w-20 h-1 bg-accent mx-auto" />
-        </motion.div>
+	return (
+		<section
+			id="services"
+			data-nav-theme="dark"
+			className="py-24 px-6 bg-primary text-primary-foreground"
+		>
+			<div className="container mx-auto max-w-6xl" ref={ref}>
+				<motion.div
+					initial={{ opacity: 0, y: 30 }}
+					animate={isInView ? { opacity: 1, y: 0 } : {}}
+					transition={{ duration: 0.8 }}
+					className="mb-8 text-center"
+				>
+					<h2 className="text-4xl md:text-5xl font-bold mb-2">
+						Expertise & Skills
+					</h2>
+					<p className="text-sm text-primary-foreground/70 max-w-2xl mx-auto">
+						I focus on building production-ready web apps and applied ML solutions
+						— delivering reliable, maintainable systems.
+					</p>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              whileHover={{ 
-                scale: 1.05,
-                rotateY: 5,
-                rotateX: 5,
-              }}
-              className="bg-primary-foreground/5 backdrop-blur-sm p-8 rounded-2xl border border-primary-foreground/10 hover:border-accent/50 transition-all cursor-pointer"
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              <div className="mb-6">
-                <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center">
-                  <service.icon className="w-8 h-8 text-accent" />
-                </div>
-              </div>
+					<div className="mt-6 flex flex-wrap justify-center gap-2">
+						{skillsRow.map((s) => (
+							<span
+								key={s}
+								className="px-3 py-1 text-xs rounded-full bg-primary-foreground/6 text-primary-foreground/90 border border-primary-foreground/8"
+							>
+								{s}
+							</span>
+						))}
+					</div>
 
-              <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-              
-              <p className="text-primary-foreground/70 mb-6 leading-relaxed">
-                {service.description}
-              </p>
+					<div className="w-20 h-1 bg-accent mx-auto mt-6" />
+				</motion.div>
 
-              <div className="flex flex-wrap gap-2">
-                {service.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 bg-accent/10 text-accent text-sm rounded-full border border-accent/20"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+				<div className="grid md:grid-cols-3 gap-6 mt-8">
+					{services.map((service, index) => (
+						<motion.div
+							key={service.title}
+							initial={{ opacity: 0, y: 20 }}
+							animate={isInView ? { opacity: 1, y: 0 } : {}}
+							transition={{ duration: 0.5, delay: index * 0.12 }}
+							whileHover={{ scale: 1.03 }}
+							className="flex items-start gap-4 p-5 bg-primary-foreground/5 rounded-xl border border-primary-foreground/10 hover:border-accent/50 transition-all cursor-pointer"
+						>
+							<div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
+								<service.icon className="w-6 h-6 text-accent" />
+							</div>
+
+							<div className="flex-1">
+								<h3 className="text-lg font-semibold mb-1">
+									{service.title}
+								</h3>
+								<p className="text-sm text-primary-foreground/70 mb-3 leading-snug">
+									{service.description}
+								</p>
+								<p className="text-xs text-primary-foreground/60">
+									{service.title === 'Leadership'
+										? 'Key Skills:'
+										: 'Key Tech:'}{' '}
+									<span className="font-medium text-primary-foreground/90">
+										{service.keyTech.join(' • ')}
+									</span>
+								</p>
+							</div>
+						</motion.div>
+					))}
+				</div>
+			</div>
+		</section>
+	);
 };
 
 export default Services;

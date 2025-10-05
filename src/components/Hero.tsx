@@ -15,13 +15,15 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-left"
+            // center on small screens, left-align on md+
+            className="text-center md:text-left"
           >
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-gray-300 mb-4 text-sm tracking-widest uppercase"
+              // small top margin so subtitle sits a bit lower and fits neatly
+              className="text-gray-300 mt-4 mb-4 text-sm tracking-widest uppercase"
             >
               CS Student & Developer
             </motion.p>
@@ -50,7 +52,8 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
-              className="flex gap-4"
+              // center CTAs on mobile, align start on larger screens
+              className="flex gap-4 justify-center md:justify-start"
             >
               {/* Get in Touch - motion anchor with subtle float + glow on dark */}
               <motion.a
@@ -91,7 +94,8 @@ const Hero = () => {
               <img
                 src={profileImage}
                 alt="Tanmayi Nadipalli"
-                className="relative w-80 h-80 object-cover rounded-full shadow-glow"
+                // slightly smaller on mobile to keep layout balanced
+                className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full shadow-glow"
               />
             </motion.div>
           </motion.div>

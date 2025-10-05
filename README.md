@@ -1,73 +1,73 @@
-# Welcome to your Lovable project
+# Tanmayi Nadipalli — CS Student & Developer
 
-## Project info
+Passionate Computer Science student building production-ready web apps and applied ML solutions. This portfolio showcases selected projects, engineering results, and the technologies I use to ship reliable, maintainable software.
 
-**URL**: https://lovable.dev/projects/d53dd0dc-f4fd-43cf-af41-2166b730956c
+Why hire me
 
-## How can I edit this code?
+- Strong fundamentals: data structures, algorithms, and ML basics.
+- End-to-end experience: from product-focused frontends to backend services and ML prototypes.
+- Leadership: Technical Head experience coordinating teams and delivery.
+- Fast learner with a solid track record of shipping projects and optimising model/perf metrics.
 
-There are several ways of editing your application.
+Highlights
 
-**Use Lovable**
+- 9.68 CGPA — consistent academic excellence.
+- Built a microservice journaling platform with OAuth2 and NLP-based insights.
+- Fine-tuned BERT classifier with 98% accuracy (experimental pipeline).
+- Practical experience with modern React (TypeScript) + Framer Motion + Tailwind.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d53dd0dc-f4fd-43cf-af41-2166b730956c) and start prompting.
+Live demo & Resume
 
-Changes made via Lovable will be committed automatically to this repo.
+- Live site: (add your deployed URL here)
+- Resume: (add link to your PDF or Google Drive)
 
-**Use your preferred IDE**
+Tech stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Frontend: React, TypeScript, Tailwind CSS, Framer Motion
+- Backend / ML: Node.js, Python, BERT / Transformers, Scikit-learn
+- Data & infra: MongoDB, REST, OAuth2.0
+- Tooling: Vite, Tailwind, PostCSS, GitHub
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Selected projects (quick)
 
-Follow these steps:
+- Mental Health Journal with AI Insights — journaling app using NLP (Cohere) + secure auth.
+- Bookify Wrapped — analytics dashboard for reading stats (Chart.js).
+- Fake News Classifier — BERT-based classifier deployed as a detection service.
+- Twitter Sentiment Analysis — ML pipeline with feature-tested preprocessing.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Quick start (local)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. Clone
+   git clone https://github.com/Tanmayi1212/your-repo.git
+2. Install
+   cd Portfolio
+   npm install
+3. Run (dev)
+   npm run dev
+4. Build
+   npm run build
+5. Preview
+   npm run preview
 
-# Step 3: Install the necessary dependencies.
-npm i
+Notes
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- Update environment variables (if any) in a .env file before running the project.
+- Tailwind classes are used site-wide — if you change the tailwind config, restart your dev server.
 
-**Edit a file directly in GitHub**
+How recruiters can evaluate fast
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Run `npm run dev` and browse the hero, projects, and contact sections.
+- Check code quality: TypeScript types, component structure, and Tailwind utility usage.
+- Ask for a short walkthrough/demo — I can explain system decisions and trade-offs in 10 minutes.
 
-**Use GitHub Codespaces**
+Contact
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Email: tanmayinadipalli@gmail.com
+- LinkedIn: https://www.linkedin.com/in/tanmayi-nadipalli/
+- GitHub: https://github.com/Tanmayi1212
 
-## What technologies are used for this project?
+License
 
-This project is built with:
+- MIT — feel free to review and reuse components (credits appreciated).
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/d53dd0dc-f4fd-43cf-af41-2166b730956c) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+(Replace placeholders for live demo and resume with your links.)

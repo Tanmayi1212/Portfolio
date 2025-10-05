@@ -24,7 +24,8 @@ const Navigation = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="site-nav"
+      // hide entire nav on small screens, show from md and up
+      className="site-nav hidden md:block"
     >
       {/* reduced inner padding to match slimmer navbar */}
       <div className="container mx-auto px-3 py-1">
@@ -33,7 +34,8 @@ const Navigation = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-base font-semibold"
+            // hide "TN" on mobile, show from md and up
+            className="text-base font-semibold hidden md:block"
           >
             TN
           </motion.div>

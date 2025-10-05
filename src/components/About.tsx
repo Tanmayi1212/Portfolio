@@ -45,63 +45,59 @@ const About = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-12"
+          className="mb-6 text-center md:text-left"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-accent">Hello, I'm Tanmayi</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-0">
+            <span className="text-accent">Hey there! I'm Tanmayi</span>
           </h2>
-          <div className="w-20 h-1 bg-accent" />
         </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
-          >
-            <p className="text-lg text-slate-800 leading-relaxed">
-              I'm a Computer Science student at CBIT, Hyderabad, with a passion for creating 
-              innovative solutions at the intersection of web development and artificial intelligence.
-            </p>
-            <p className="text-lg text-slate-800 leading-relaxed">
-              Currently maintaining a <span className="text-foreground font-semibold">9.68 CGPA</span>, 
-              I focus on building scalable web applications and exploring machine learning technologies. 
-              As Technical Head of NSS, I lead teams in delivering impactful technical solutions.
-            </p>
-            <p className="text-lg text-slate-800 leading-relaxed">
-              I believe in continuous learning and problem-solving, which drives my commitment to 
-              excellence in every project I undertake.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-2 gap-8"
-          >
-            <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
-              <AnimatedCounter target={350} suffix="+" />
-              <p className="text-sm text-muted-foreground mt-2">LeetCode Problems</p>
-            </div>
-            <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
-              <AnimatedCounter target={98} suffix="%" />
-              <p className="text-sm text-muted-foreground mt-2">Model Accuracy</p>
-            </div>
-            <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
-              <span className="text-4xl font-bold text-accent">9.68</span>
-              <p className="text-sm text-muted-foreground mt-2">CGPA</p>
-            </div>
-            <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
-              <AnimatedCounter target={10} suffix="+" />
-              <p className="text-sm text-muted-foreground mt-2">Projects</p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default About;
+ 
+        {/* make layout 60:40 on md+ by using a 5-column grid and col spans (3/5 + 2/5) */}
+         <div className="grid md:grid-cols-5 gap-8 md:gap-16 items-start">
+           <motion.div
+             initial={{ opacity: 0, y: 30 }}
+             animate={isInView ? { opacity: 1, y: 0 } : {}}
+             transition={{ duration: 0.8, delay: 0.2 }}
+             className="space-y-4 md:space-y-6 md:col-span-3"
+           >
+             <p className="text-base md:text-lg text-slate-800 leading-relaxed">
+               I'm a Computer Science student at CBIT, Hyderabad, with a passion for building the future—one web app and AI model at a time. <br/><br/> As the Technical Head of NSS, I lead teams focused on creating tech solutions that address real-world challenges. This role has given me firsthand experience in the power of collaboration and the impact of well-executed technology.
+             </p>
+             
+             <p className="text-base md:text-lg text-slate-800 leading-relaxed">
+               I’m driven by a simple motto: <b>keep learning, keep solving, keep building</b>. Whether it's diving into new frameworks or pushing the boundaries of machine learning, I’m always chasing the next challenge.
+             </p>
+             <p className="text-base md:text-lg text-slate-800 leading-relaxed">For me, tech isn’t just about writing code, it’s about making a difference, and that’s what I bring to every project.
+             </p>
+           </motion.div>
+ 
+           <motion.div
+             initial={{ opacity: 0, scale: 0.9 }}
+             animate={isInView ? { opacity: 1, scale: 1 } : {}}
+             transition={{ duration: 0.8, delay: 0.4 }}
+             className="grid grid-cols-2 gap-6 md:col-span-2"
+           >
+             <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
+               <AnimatedCounter target={350} suffix="+" />
+               <p className="text-xs md:text-sm text-muted-foreground mt-2">LeetCode Problems</p>
+             </div>
+             <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
+               <AnimatedCounter target={98} suffix="%" />
+               <p className="text-xs md:text-sm text-muted-foreground mt-2">Model Accuracy</p>
+             </div>
+             <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
+               <span className="text-3xl md:text-4xl font-bold text-accent">9.68</span>
+               <p className="text-xs md:text-sm text-muted-foreground mt-2">CGPA</p>
+             </div>
+             <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
+               <AnimatedCounter target={10} suffix="+" />
+               <p className="text-xs md:text-sm text-muted-foreground mt-2">Projects</p>
+             </div>
+           </motion.div>
+         </div>
+       </div>
+     </section>
+   );
+ };
+ 
+ export default About;
