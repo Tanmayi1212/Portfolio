@@ -9,31 +9,31 @@ import twitterImg from '@/assets/project-twitter.jpg';
 
 const projects = [
   {
-    title: 'Mental Health Journal with AI Insights',
-    description: 'Microservice-style journaling platform with secure OAuth2.0 login, NLP sentiment analysis, and personalized AI feedback. Improved AI response time by 30%.',
-    image: mentalHealthImg,
-    tech: ['Next.js', 'Node.js', 'MongoDB', 'Cohere API', 'OAuth2.0'],
-    github: 'https://github.com/Tanmayi1212',
-  },
-  {
-    title: 'Bookify Wrapped',
-    description: 'Analytics dashboard inspired by Spotify Wrapped for book reading statistics. Features modular components for scalability and data visualization with Chart.js.',
-    image: bookifyImg,
-    tech: ['React', 'Google Books API', 'Chart.js'],
-    github: 'https://github.com/Tanmayi1212',
-  },
-  {
-    title: 'Fake News Classifier',
-    description: 'Fine-tuned BERT model achieving 98% accuracy on political news data. Deployed as a secure, real-time misinformation detection application.',
+    title: 'AI-Powered Identity Verification & Fraud Detection System',
+    description: 'Built a production-ready KYC verification backend supporting PAN and Aadhaar document using OCR. Implemented automated field extraction and MongoDB for persistent storage.',
     image: fakeNewsImg,
-    tech: ['Python', 'BERT', 'Transformers', 'Streamlit'],
+    tech: ['PyTorch', 'FastAPI', 'Easy OCR', 'MongoDB'],
     github: 'https://github.com/Tanmayi1212',
   },
   {
-    title: 'Twitter Sentiment Analysis',
-    description: 'ML pipeline achieving 85% accuracy in sentiment classification using Logistic Regression. Applied unit testing to data preprocessing workflows.',
+    title: 'Food Classifier and NGO Food Routing Platform',
+    description: 'Led a team to build a CNN-powered web application for image-based food freshness classification. Automated surplus food routing from events to NGOs with real-time tracking & cloud deployment.',
     image: twitterImg,
-    tech: ['Python', 'Scikit-learn', 'Logistic Regression'],
+    tech: ['Python', 'React', 'TensorFlow', 'AWS'],
+    github: 'https://github.com/Tanmayi1212',
+  },
+  {
+    title: 'AI-Driven Candidate Allocation System',
+    description: 'ML-based allocation platform using semantic resume analysis with BERT-based embeddings. Processed and evaluated 500+ candidate profiles using automated pipelines and optimized REST APIs.',
+    image: bookifyImg,
+    tech: ['React', 'Flask', 'Sentence-BERT', 'scikit-learn'],
+    github: 'https://github.com/Tanmayi1212',
+  },
+  {
+    title: 'Mental Health Journal with AI Insights',
+    description: 'Built a secure full-stack journaling platform providing AI-driven mental health insights for 100+ users.',
+    image: mentalHealthImg,
+    tech: ['Next.js', 'Node.js', 'MongoDB', 'Cohere API'],
     github: 'https://github.com/Tanmayi1212',
   },
 ];

@@ -27,7 +27,7 @@ const services = [
 	},
 ];
 
-const skillsRow = ["Python", "JavaScript", "SQL", "HTML", "CSS", "Tailwind CSS", "MongoDB", "Database Management Systems", "Object-Oriented Programming", "Data Structures & Algorithms", "Operating Systems", "GitHub", "Linux", "Transformers", "Machine Learning"];
+const skillsRow = ["Python", "Java", "JavaScript", "C", "SQL", "Machine Learning", "Deep Learning", "DSA", "Statistics", "Pandas", "NumPy", "React", "Node.js", "FastAPI", "REST", "MongoDB", "Git", "Agile", "Leadership"];
 
 
 

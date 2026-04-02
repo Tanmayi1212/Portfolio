@@ -41,7 +41,7 @@ const Navigation = () => {
           </motion.div>
 
           <div className="hidden md:flex gap-8">
-            {['about', 'services', 'projects', 'contact'].map((item, index) => (
+            {['about', 'services', 'experience', 'projects', 'contact'].map((item, index) => (
               <motion.button
                 key={item}
                 initial={{ opacity: 0, y: -20 }}

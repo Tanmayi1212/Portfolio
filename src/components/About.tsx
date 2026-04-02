@@ -77,13 +77,13 @@ const About = () => {
              transition={{ duration: 0.8, delay: 0.4 }}
              className="grid grid-cols-2 gap-6 md:col-span-2"
            >
-             <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
-               <AnimatedCounter target={350} suffix="+" />
+            <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
+               <AnimatedCounter target={450} suffix="+" />
                <p className="text-xs md:text-sm text-muted-foreground mt-2">LeetCode Problems</p>
              </div>
              <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
-               <AnimatedCounter target={98} suffix="%" />
-               <p className="text-xs md:text-sm text-muted-foreground mt-2">Model Accuracy</p>
+               <AnimatedCounter target={4} suffix="*" />
+               <p className="text-xs md:text-sm text-muted-foreground mt-2">HackerRank</p>
              </div>
              <div className="text-center p-8 bg-card rounded-2xl shadow-soft">
                <span className="text-3xl md:text-4xl font-bold text-accent">9.68</span>
