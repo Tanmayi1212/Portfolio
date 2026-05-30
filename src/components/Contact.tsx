@@ -1,118 +1,159 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Github, Linkedin, Mail, Code2 } from 'lucide-react';
+import { Github, Linkedin, Mail, Code2, ArrowUpRight } from 'lucide-react';
 
 const socials = [
-	{
-		name: 'GitHub',
-		icon: Github,
-		link: 'https://github.com/Tanmayi1212',
-		color: 'hover:text-orange-500',
-	},
-	{
-		name: 'LinkedIn',
-		icon: Linkedin,
-		link: 'https://www.linkedin.com/in/tanmayi-nadipalli/',
-		color: 'hover:text-orange-500',
-	},
-	{
-		name: 'LeetCode',
-		icon: Code2,
-		link: 'https://leetcode.com/u/Tanmayi_12/',
-		color: 'hover:text-orange-500',
-	},
-	{
-		name: 'Email',
-		icon: Mail,
-		link: 'mailto:tanmayinadipalli@gmail.com',
-		color: 'hover:text-orange-500',
-	},
+  {
+    name: 'GitHub',
+    icon: Github,
+    link: 'https://github.com/Tanmayi1212',
+    handle: '@Tanmayi1212',
+  },
+  {
+    name: 'LinkedIn',
+    icon: Linkedin,
+    link: 'https://www.linkedin.com/in/tanmayi-nadipalli/',
+    handle: 'tanmayi-nadipalli',
+  },
+  {
+    name: 'LeetCode',
+    icon: Code2,
+    link: 'https://leetcode.com/u/Tanmayi_12/',
+    handle: 'Tanmayi_12',
+  },
+  {
+    name: 'Email',
+    icon: Mail,
+    link: 'mailto:tanmayinadipalli@gmail.com',
+    handle: 'tanmayinadipalli@gmail.com',
+  },
 ];
 
 const Contact = () => {
-	const ref = useRef(null);
-	const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
 
-	return (
-		// mark this section as dark so navbar stays appropriate and use dark background
-		<section
-			id="contact"
-			data-nav-theme="dark"
-			className="py-24 px-6 bg-dark-section text-white"
-		>
-			<div className="container mx-auto max-w-4xl text-center" ref={ref}>
-				<motion.div
-					initial={{ opacity: 0, y: 30 }}
-					animate={isInView ? { opacity: 1, y: 0 } : {}}
-					transition={{ duration: 0.8 }}
-				>
-					<motion.h2
-						animate={isInView ? { scale: [1, 1.02, 1] } : {}}
-						transition={{ duration: 1, delay: 0.5 }}
-						className="text-4xl md:text-6xl font-bold mb-6 text-white"
-					>
-						<br />
-						<span className="text-accent">
-							{' '}
-							Let&apos;s Create Something Amazing Together
-						</span>
-					</motion.h2>
+  return (
+    <section
+      id="contact"
+      className="py-24 px-6 relative overflow-hidden"
+      style={{ background: '#442D1C' }}
+      ref={ref}
+    >
+      {/* Background circles */}
+      <div
+        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full opacity-10 pointer-events-none"
+        style={{ background: '#84592B', filter: 'blur(80px)' }}
+      />
 
-					<motion.p
-						initial={{ opacity: 0 }}
-						animate={isInView ? { opacity: 1 } : {}}
-						transition={{ delay: 0.6 }}
-						className="text-xl text-gray-300 mb-12 leading-relaxed"
-					>
-						I'm always excited to collaborate on innovative projects.
-						<br />
-						Feel free to reach out!
-					</motion.p>
-				</motion.div>
+      <div className="container mx-auto max-w-6xl relative z-10">
+        {/* Big CTA headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <p className="section-eyebrow justify-center mb-6" style={{ color: '#9D9167' }}>
+            <span className="w-8 h-px inline-block" style={{ background: '#9D9167' }} />
+            Get In Touch
+          </p>
 
-				<motion.div
-					initial={{ opacity: 0, y: 30 }}
-					animate={isInView ? { opacity: 1, y: 0 } : {}}
-					transition={{ duration: 0.8, delay: 0.3 }}
-					className="flex justify-center gap-6 mb-12"
-				>
-					{socials.map((social, index) => (
-						<motion.a
-							key={social.name}
-							href={social.link}
-							target="_blank"
-							rel="noopener noreferrer"
-							initial={{ opacity: 0, scale: 0 }}
-							animate={isInView ? { opacity: 1, scale: 1 } : {}}
-							transition={{
-								delay: 0.5 + index * 0.1,
-								type: 'spring',
-								stiffness: 200,
-							}}
-							whileHover={{ scale: 1.2, rotate: 5 }}
-							whileTap={{ scale: 0.9 }}
-							// use a dark card background and white icon color for contrast
-							className={`w-16 h-16 rounded-full bg-surface-dark shadow-soft flex items-center justify-center transition-colors text-white ${social.color}`}
-						>
-							<social.icon className="w-7 h-7" />
-						</motion.a>
-					))}
-				</motion.div>
+          <h2
+            className="text-[clamp(3rem,8vw,7rem)] font-black leading-none tracking-tighter mb-6"
+            style={{ color: '#E8D1A7' }}
+          >
+            Let's Create<br />
+            <span className="font-display italic" style={{ color: '#9D9167' }}>Something</span><br />
+            Amazing
+          </h2>
 
-				<motion.div
-					initial={{ opacity: 0 }}
-					animate={isInView ? { opacity: 1 } : {}}
-					transition={{ delay: 0.9 }}
-					className="pt-12 border-t border-white/10"
-				>
-					<p className="text-gray-400">
-						© 2025 Tanmayi Nadipalli. Built with React & Framer Motion.
-					</p>
-				</motion.div>
-			</div>
-		</section>
-	);
+          <p
+            className="text-lg max-w-lg mx-auto leading-relaxed mb-10"
+            style={{ color: 'rgba(232,209,167,0.65)' }}
+          >
+            I'm always excited to collaborate on innovative projects.
+            Open to internships, freelance work, and research collaborations.
+          </p>
+
+          <motion.a
+            href="mailto:tanmayinadipalli@gmail.com"
+            whileHover={{ scale: 1.05, y: -4 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 px-10 py-5 rounded-full text-base font-bold tracking-wide transition-all"
+            style={{ background: '#E8D1A7', color: '#442D1C' }}
+          >
+            Say Hello
+            <ArrowUpRight size={18} />
+          </motion.a>
+        </motion.div>
+
+        {/* Divider */}
+        <div className="h-px mb-12" style={{ background: 'rgba(232,209,167,0.15)' }} />
+
+        {/* Social links */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
+          {socials.map((s, i) => (
+            <motion.a
+              key={s.name}
+              href={s.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4 + i * 0.1 }}
+              whileHover={{ y: -6, scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex flex-col items-center gap-3 p-6 rounded-2xl border transition-all group"
+              style={{
+                background: 'rgba(232,209,167,0.05)',
+                borderColor: 'rgba(232,209,167,0.12)',
+              }}
+            >
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
+                style={{ background: 'rgba(232,209,167,0.08)' }}
+              >
+                <s.icon size={22} style={{ color: '#9D9167' }} />
+              </div>
+              <div className="text-center">
+                <div className="text-sm font-bold mb-0.5" style={{ color: '#E8D1A7' }}>{s.name}</div>
+                <div className="text-xs truncate max-w-[120px]" style={{ color: 'rgba(232,209,167,0.45)' }}>
+                  {s.handle}
+                </div>
+              </div>
+            </motion.a>
+          ))}
+        </motion.div>
+
+        {/* Footer */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.9 }}
+          className="mt-16 pt-8 border-t flex flex-col md:flex-row items-center justify-between gap-4"
+          style={{ borderColor: 'rgba(232,209,167,0.12)' }}
+        >
+          <p className="text-sm" style={{ color: 'rgba(232,209,167,0.4)' }}>
+            © 2025 Tanmayi Nadipalli — Built with React & Framer Motion
+          </p>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="text-sm font-semibold transition-colors hover:opacity-80"
+            style={{ color: '#9D9167' }}
+          >
+            Back to Top ↑
+          </button>
+        </motion.div>
+      </div>
+    </section>
+  );
 };
 
 export default Contact;

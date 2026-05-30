@@ -4,23 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tanmayi Nadipalli | CS Student & Developer</title>
-    <meta name="description" content="CS Student passionate about Web Development & AI/ML. Explore my projects and skills." />
+    <meta name="description" content="CS Student passionate about Web Development & AI/ML. Explore my projects and experience." />
     <meta name="author" content="Tanmayi Nadipalli" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <meta property="og:title" content="Tanmayi Nadipalli | CS Student & Developer" />
     <meta property="og:description" content="CS Student passionate about Web Development & AI/ML" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <style>
-      /* Keep the navbar dark by default (white text on dark translucent bg). */
+      /* ── Navigation bar ── */
       .site-nav {
         position: fixed;
         top: 0;
@@ -30,88 +27,46 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-        /* slightly reduced vertical padding kept */
-        padding: 0.4rem 0.75rem;
-        background: rgba(6,8,15,0.55); /* dark by default */
-        backdrop-filter: blur(6px);
-        color: #fff; /* white text for visibility */
-        transition: background-color .25s ease, color .25s ease, box-shadow .25s ease;
-        box-shadow: 0 2px 14px rgba(2,6,23,0.12);
+        padding: 0.75rem 1.5rem;
+        background: rgba(245, 236, 218, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: #442D1C;
+        transition: background-color .3s ease, box-shadow .3s ease;
+        box-shadow: 0 1px 0 rgba(68,45,28,0.12);
         pointer-events: auto;
       }
-
-      /* keep the .dark rule for compatibility (no visible change) */
-      .site-nav.dark {
-        background: rgba(6,8,15,0.45);
-        color: #fff;
-        box-shadow: 0 2px 10px rgba(2,6,23,0.12);
+      .site-nav.scrolled {
+        background: rgba(245, 236, 218, 0.95);
+        box-shadow: 0 4px 24px rgba(68,45,28,0.12);
       }
-
-      .site-nav a, .site-nav button, .site-nav svg {
+      .site-nav a, .site-nav button {
         color: inherit;
+        font-family: 'Outfit', sans-serif;
       }
     </style>
   </head>
 
-  <body class="bg-dark-section text-white">
+  <body style="background-color:#F5ECDA; color:#442D1C;">
     <div id="root"></div>
 
     <script>
-      // Wait for a nav element with class 'site-nav' or id 'navbar' to appear in DOM,
-      // then observe sections that provide data-nav-theme="light" | "dark".
-      // Behavior: when a section's data-nav-theme === "light" we ADD the .dark class
-      // (i.e. navbar becomes dark) — this inverts the previous mapping per request.
-      (function watchNavTheme(){
-        const findNav = () => document.querySelector('.site-nav') || document.querySelector('#navbar') || null;
-
-        const getCurrentSectionTheme = () => {
-          // prefer sections that have their center in the viewport
-          const sections = Array.from(document.querySelectorAll('section[data-nav-theme]'));
-          const centerY = window.innerHeight / 2;
-          for (const s of sections) {
-            const r = s.getBoundingClientRect();
-            if (r.top <= centerY && r.bottom >= centerY) return s.getAttribute('data-nav-theme');
-          }
-          // fallback: nearest to top
-          if (sections.length) return sections[0].getAttribute('data-nav-theme');
-          return null;
+      // Scrolled class on navbar
+      (function(){
+        const findNav = () => document.querySelector('.site-nav');
+        const apply = (nav) => {
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+          }, { passive: true });
         };
-
-        const applyThemeToNav = (navEl, theme) => {
-          // Inverted mapping: light section -> dark navbar; dark section -> light navbar
-          if (theme === 'light') navEl.classList.add('dark');
-          else navEl.classList.remove('dark');
-        };
-
-        const initObserver = (navEl) => {
-          const sections = Array.from(document.querySelectorAll('section[data-nav-theme]'));
-          if (!sections.length) {
-            const theme = getCurrentSectionTheme();
-            if (theme) applyThemeToNav(navEl, theme);
-            return;
-          }
-          
-          const onScroll = () => {
-            const theme = getCurrentSectionTheme();
-            if (theme) applyThemeToNav(navEl, theme);
-          };
-          
-          window.addEventListener('scroll', onScroll, { passive: true });
-          onScroll();
-        };
-
-        const waitForNav = setInterval(() => {
-          const navEl = findNav();
-          if (navEl) {
-            clearInterval(waitForNav);
-            initObserver(navEl);
-          }
+        const wait = setInterval(() => {
+          const nav = findNav();
+          if (nav) { clearInterval(wait); apply(nav); }
         }, 100);
       })();
     </script>
 
     <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
   </body>
 </html>
