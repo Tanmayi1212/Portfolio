@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
+import { useMotionValue } from 'framer-motion';
 
 /* ── Animated counter ── */
 const AnimatedCounter = ({ target, suffix = '' }: { target: number; suffix?: string }) => {
@@ -24,10 +25,96 @@ const AnimatedCounter = ({ target, suffix = '' }: { target: number; suffix?: str
   return <span ref={ref}>{count}{suffix}</span>;
 };
 
+/* ── 3D Tilt Bento Card with Glassmorphic Glare Effect ── */
+const BentoCard = ({
+  children,
+  className,
+  style,
+  delay,
+  isInView,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  delay: number;
+  isInView: boolean;
+}) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left - width / 2;
+    const mouseY = e.clientY - rect.top - height / 2;
+
+    // Subtle 3D rotation (max 5 degrees)
+    const rX = -(mouseY / (height / 2)) * 5;
+    const rY = (mouseX / (width / 2)) * 5;
+
+    x.set(rX);
+    y.set(rY);
+
+    // Dynamic Glare coordinates
+    const glareX = ((e.clientX - rect.left) / width) * 100;
+    const glareY = ((e.clientY - rect.top) / height) * 100;
+    e.currentTarget.style.setProperty('--glare-x', `${glareX}%`);
+    e.currentTarget.style.setProperty('--glare-y', `${glareY}%`);
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    setHovered(false);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+      transition={{
+        type: 'spring',
+        damping: 25,
+        stiffness: 80,
+        delay,
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`relative overflow-hidden rounded-2xl border transition-shadow duration-300 ${className || ''}`}
+      style={{
+        ...style,
+        rotateX: x,
+        rotateY: y,
+        transformStyle: 'preserve-3d',
+        perspective: 1000,
+        boxShadow: hovered ? '0 20px 40px rgba(68,45,28,0.18)' : '0 4px 12px rgba(68,45,28,0.04)',
+      }}
+    >
+      {/* Glare swept across based on cursor */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+        style={{
+          background: 'radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.15), transparent 60%)',
+          mixBlendMode: 'overlay',
+          zIndex: 10,
+          opacity: hovered ? 1 : 0,
+        }}
+      />
+      <div className="h-full w-full relative z-20" style={{ transform: 'translateZ(15px)' }}>
+        {children}
+      </div>
+    </motion.div>
+  );
+};
+
 const skills = [
-  'React', 'Next.js', 'Node.js', 'Python', 'TensorFlow', 'PyTorch',
-  'FastAPI', 'MongoDB', 'SQL', 'REST APIs', 'BERT', 'scikit-learn',
-  'TypeScript', 'Git', 'AWS', 'Docker', 'Data Analysis', 'DSA',
+  'Next.js', 'React', 'Tailwind CSS', 'DeBERTa', 'Large Language Models', 'GNNs',
+  'Node.js', 'Python', 'TensorFlow', 'PyTorch', 'FastAPI', 'MongoDB',
+  'SQL', 'REST APIs', 'BERT', 'scikit-learn', 'TypeScript', 'Git',
+  'AWS', 'Docker', 'Data Analysis', 'DSA',
 ];
 
 const About = () => {
@@ -38,7 +125,7 @@ const About = () => {
     { value: 550, suffix: '+', label: 'LeetCode Problems' },
     { value: 10, suffix: '+', label: 'Projects Built' },
     { value: 4, suffix: '★', label: 'HackerRank' },
-    { value: 3, suffix: '+', label: 'Years Building' },
+    { isText: true, title: 'LLMs & Microservices', label: 'Advanced System Architecture' },
   ];
 
   return (
@@ -99,45 +186,57 @@ const About = () => {
             </motion.div>
 
             {/* Right: Stats grid */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="grid grid-cols-2 gap-4"
-            >
+            <div className="grid grid-cols-2 gap-4">
               {stats.map((s, i) => (
-                <motion.div
+                <BentoCard
                   key={s.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.3 + i * 0.1 }}
-                  className="card-hover rounded-2xl p-7 border"
+                  delay={0.3 + i * 0.1}
+                  isInView={isInView}
+                  className="p-7"
                   style={{
                     background: i % 2 === 0 ? '#442D1C' : '#E8D1A7',
                     borderColor: i % 2 === 0 ? '#442D1C' : '#D4BC8E',
                   }}
                 >
-                  <div
-                    className="text-4xl md:text-5xl font-black mb-2 leading-none"
-                    style={{ color: i % 2 === 0 ? '#E8D1A7' : '#442D1C' }}
-                  >
-                    <AnimatedCounter target={s.value} suffix={s.suffix} />
-                  </div>
-                  <div
-                    className="text-xs font-semibold uppercase tracking-wider"
-                    style={{ color: i % 2 === 0 ? '#9D9167' : '#84592B' }}
-                  >
-                    {s.label}
-                  </div>
-                </motion.div>
+                  {s.isText ? (
+                    <>
+                      <div
+                        className="text-xl md:text-2xl font-black mb-2 leading-tight"
+                        style={{ color: i % 2 === 0 ? '#E8D1A7' : '#442D1C' }}
+                      >
+                        {s.title}
+                      </div>
+                      <div
+                        className="text-xs font-semibold uppercase tracking-wider"
+                        style={{ color: i % 2 === 0 ? '#9D9167' : '#84592B' }}
+                      >
+                        {s.label}
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div
+                        className="text-4xl md:text-5xl font-black mb-2 leading-none"
+                        style={{ color: i % 2 === 0 ? '#E8D1A7' : '#442D1C' }}
+                      >
+                        <AnimatedCounter target={s.value || 0} suffix={s.suffix} />
+                      </div>
+                      <div
+                        className="text-xs font-semibold uppercase tracking-wider"
+                        style={{ color: i % 2 === 0 ? '#9D9167' : '#84592B' }}
+                      >
+                        {s.label}
+                      </div>
+                    </>
+                  )}
+                </BentoCard>
               ))}
 
               {/* CGPA card spanning full width */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.7 }}
-                className="col-span-2 card-hover rounded-2xl p-6 flex items-center justify-between border"
+              <BentoCard
+                delay={0.7}
+                isInView={isInView}
+                className="col-span-2 p-6 flex items-center justify-between"
                 style={{ background: '#84592B', borderColor: '#84592B' }}
               >
                 <div>
@@ -145,8 +244,8 @@ const About = () => {
                   <div className="text-xs font-semibold uppercase tracking-wider mt-1" style={{ color: '#D4BC8E' }}>CGPA — CBIT Hyderabad</div>
                 </div>
                 <div className="text-6xl font-black opacity-20" style={{ color: '#E8D1A7' }}>GPA</div>
-              </motion.div>
-            </motion.div>
+              </BentoCard>
+            </div>
           </div>
         </div>
       </div>
@@ -154,7 +253,10 @@ const About = () => {
       {/* ── Marquee skills band ── */}
       <div
         className="py-5 overflow-hidden border-t border-b"
-        style={{ borderColor: '#D4BC8E', background: '#442D1C' }}
+        style={{
+          borderColor: '#D4BC8E',
+          background: '#442D1C'
+        }}
       >
         <div className="marquee-track select-none">
           {[...skills, ...skills].map((skill, i) => (

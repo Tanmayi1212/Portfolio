@@ -10,7 +10,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-end pb-20 pt-32 px-6 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center pb-12 pt-20 px-6 overflow-hidden"
       style={{ background: '#F5ECDA' }}
     >
       {/* Decorative background circle */}
@@ -22,50 +22,12 @@ const Hero = () => {
         }}
       />
 
-      {/* Rotating badge */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.8, duration: 0.6 }}
-        className="absolute top-36 right-6 md:right-24 hidden md:block"
-      >
-        <div className="relative w-28 h-28">
-          <svg viewBox="0 0 100 100" className="animate-spin-slow w-full h-full absolute inset-0">
-            <defs>
-              <path id="circlePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
-            </defs>
-            <text fontSize="12" fontFamily="Outfit,sans-serif" fontWeight="600" fill="#84592B" letterSpacing="3">
-              <textPath href="#circlePath">
-                CS STUDENT · DEVELOPER · AI/ML ·{' '}
-              </textPath>
-            </text>
-          </svg>
-          <div
-            className="absolute inset-0 flex items-center justify-center rounded-full"
-            style={{ background: '#E8D1A7', width: '60%', height: '60%', margin: '20%' }}
-          >
-            <span className="text-lg font-bold" style={{ color: '#442D1C' }}>TN</span>
-          </div>
-        </div>
-      </motion.div>
+
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-end">
           {/* Left: Big text */}
           <div>
-            {/* Eyebrow */}
-            <motion.p
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="section-eyebrow mb-6"
-            >
-              <span
-                className="w-8 h-px inline-block"
-                style={{ background: '#84592B' }}
-              />
-              Portfolio 2025
-            </motion.p>
 
             {/* Main headline */}
             <div className="overflow-hidden mb-2">
@@ -100,7 +62,7 @@ const Hero = () => {
               className="text-lg md:text-xl leading-relaxed max-w-md mb-10"
               style={{ color: '#743014', opacity: 0.85 }}
             >
-              Building tomorrow's web & AI solutions.<br />
+              Full-Stack Engineer & AI Enthusiast. Architecting scalable Next.js platforms and automated LLM evaluation frameworks.<br />
               CS @ CBIT Hyderabad · Technical Head, NSS.
             </motion.p>
 

@@ -2,12 +2,33 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Github, ArrowUpRight } from 'lucide-react';
-import mentalHealthImg from '@/assets/project-mental-health.jpg';
+import ai4impactImg from '@/assets/project-ai4impact.png';
+import kalakrithiImg from '@/assets/project-kalakrithi.png';
 import bookifyImg from '@/assets/project-bookify.jpg';
 import fakeNewsImg from '@/assets/project-fake-news.jpg';
 import twitterImg from '@/assets/project-twitter.jpg';
 
 const projects = [
+  {
+    title: 'KalakrithiXarangetra Portal',
+    description:
+      'Architected the backend for the KalakrithiXarangetra portal, engineering a slot-wise, concurrent First-Come-First-Serve (FCFS) system that successfully processed 1,000+ registrations in 3 days.',
+    image: kalakrithiImg,
+    tech: ['React', 'Node.js', 'Firebase', 'Firestore'],
+    github: 'https://github.com/Tanmayi1212',
+    live: 'https://kalakrithixarangetra.web.app/',
+    tag: 'Backend / FCFS',
+  },
+  {
+    title: 'ai4impact Hackathon Platform',
+    description:
+      'Spearheaded the frontend architecture for the ai4impact hackathon platform, building scalable and responsive UI components to handle massive traffic spikes during live events.',
+    image: ai4impactImg,
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    github: 'https://github.com/Tanmayi1212',
+    live: 'https://ai4impact.web.app/',
+    tag: 'Frontend / Architecture',
+  },
   {
     title: 'AI-Powered Identity Verification & Fraud Detection',
     description:
@@ -35,15 +56,6 @@ const projects = [
     github: 'https://github.com/Tanmayi1212/AI-Based-Smart-Allocation-Engine',
     tag: 'ML / NLP',
   },
-  {
-    title: 'Mental Health Journal with AI Insights',
-    description:
-      'Secure full-stack journaling platform providing AI-driven mental health insights for 100+ users with real-time analysis and actionable recommendations.',
-    image: mentalHealthImg,
-    tech: ['Next.js', 'Node.js', 'MongoDB', 'Cohere API'],
-    github: 'https://github.com/Tanmayi1212',
-    tag: 'Web App',
-  },
 ];
 
 interface Project {
@@ -52,6 +64,7 @@ interface Project {
   image: string;
   tech: string[];
   github: string;
+  live?: string;
   tag: string;
 }
 
@@ -113,7 +126,7 @@ const ProjectCard = ({ project, index, isInView }: { project: Project; index: nu
             <Github size={16} />
           </motion.a>
           <motion.a
-            href={project.github}
+            href={project.live || project.github}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
